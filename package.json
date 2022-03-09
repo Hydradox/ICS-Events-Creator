@@ -1,0 +1,27 @@
+{
+  "name": "ics-events-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hydradox/ICS-Events-Creator.git"
+  },
+  "author": "JCM",
+  "license": "GNU-3.0",
+  "bugs": {
+    "url": "https://github.com/Hydradox/ICS-Events-Creator/issues"
+  },
+  "homepage": "https://github.com/Hydradox/ICS-Events-Creator#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "express": "^4.17.3",
+    "ics": "^2.35.0",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.15"
+  },
+  "type": "module"
+}

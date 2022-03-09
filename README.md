@@ -1,1 +1,1 @@
-# ICS-Events-Creator
+# ICS Events Creator
