@@ -106,7 +106,7 @@ h1 {
     text-overflow: ellipsis;
     overflow: hidden;
 
-    padding: 20px 0;
+    padding: 20px 10px;
 
     color: #fff;
     background-color: #3d3d3d;
@@ -193,16 +193,42 @@ main {
 
 
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    gap: 10px;
 }
 
 
 .month {
-    width: 100px;
-    height: 170px;
+    height: calc(1.3em + 150px);
+    text-align: center;
 
-    background-color: red;
+    border: 1px solid blue;
 }
+
+.month caption {
+    font-size: 1.3em;
+    font-weight: 700;
+    padding: 5px 0;
+}
+
+.month td div {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.month td div.selected {
+    background-color: purple;
+    color: #fff;
+}
+
+
 
 
 

@@ -4,6 +4,7 @@ let main = $('main');
 
 // Init vars
 let ts = new Date();
+const monthCount = 12;
 
 
 
@@ -26,16 +27,6 @@ daySelector.on('click', function(e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
 /* Constructores de UI */
 // Contruir mes
 function getMonth() {
@@ -43,7 +34,7 @@ function getMonth() {
 
 
     uiMonth =
-    `<div class="month>"
+    `<table class="month">
 
     </div>`
 
