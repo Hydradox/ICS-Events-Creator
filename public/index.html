@@ -6,9 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICS Event Creator</title>
 
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>Hola</h1>
+    <h1>Creador de eventos en ICS</h1>
+
+    <header>
+        <div id="cal-params">
+            <h3>Elige los días seleccionables:</h3>
+            <ul id="day-list">
+                <li class="active" data-day="L">L</li>
+                <li class="active" data-day="M">M</li>
+                <li class="active" data-day="X">X</li>
+                <li class="active" data-day="J">J</li>
+                <li class="active" data-day="V">V</li>
+                <li data-day="S">S</li>
+                <li data-day="D">D</li>
+            </ul>
+
+
+            <label for="daysBetweenEvents">
+                <span>Días entre eventos:</span>
+                <input type="number" name="daysBetweenEvents" id="daysBetweenEvents" placeholder="Por defecto: 1"
+                    oninput="this.value = this.value.slice(0, 3)"
+                >
+            </label>
+
+            <label for="startDate">
+                <span>Final del evento:</span>
+                <input type="date" name="startDate" id="startDate">
+            </label>
+
+            <label for="endDate">
+                <span>Final del evento:</span>
+                <input type="date" name="endDate" id="endDate">
+            </label>
+        </div>
+
+
+        <fieldset id="legend">
+            <legend>Leyenda:</legend>
+            <ul>
+                <li>
+                    <span class="color green"></span>
+                    <span class="legend-txt">Día actual<l</span>
+                </li>
+                <li>
+                    <span class="color purple"></span>
+                    <span class="legend-txt">Día seleccionado<l</span>
+                </li>
+                <li>
+                    <span class="color black"></span>
+                    <span class="legend-txt">Día no seleccionable</span>
+                </li>
+            </ul>
+        </fieldset>
+    </header>
+
+
+    <main>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+        <div class="month"></div>
+    </main>
+
+
+
+    <!-- Scripts -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
 </html>

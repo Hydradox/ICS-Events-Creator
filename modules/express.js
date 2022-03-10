@@ -18,8 +18,8 @@ import routes from './routes.js';
 const port = 3000;
 
 // Init const Chalk
-const expressTitle = chalk.bold.magenta;
-const expressSubtitle = chalk.bold.bgMagenta;
+const expressTitle = chalk.bold.blue;
+const expressSubtitle = chalk.bold.bgBlue;
 
 
 // Init package variables
@@ -35,8 +35,7 @@ class App {
 
         // Middleware
         app.set('port', port);
-        app.set('public', join(process.cwd(), 'public'));
-        
+        app.use(express.static(join(process.cwd(), 'public')));
         app.set('/', routes(app));
 
 

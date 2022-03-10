@@ -1,7 +1,236 @@
+:root {
+    --shadow: 2px 2px 5px 0px #000000;
+}
+
+
 * {
     margin: 0;
     padding: 0;
 
     box-sizing: border-box;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    max-width: 130ch;
+    min-width: 280px;
+    margin: 0 auto;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+input {
+    padding: 5px;
+
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid #000000;
+
+    transition: border 0.2s ease-in-out;
+}
+
+input:focus {
+    border-bottom: 3px solid #8d8d8d;
+}
+
+
+
+.color {
+    width: 1em;
+    height: 1em;
+
+    background-color: #000000;
+    border-radius: 50%;
+
+    display: inline-block;
+    margin-right: 7px;
+}
+
+.green { background-color: green; }
+.purple { background-color: purple; }
+.blue { background-color: blue; }
+.black { background-color: black; }
+
+
+
+#legend {
+    max-width: 500px;
+    min-width: 250px;
+    padding: 10px;
+}
+
+#legend ul {
+    list-style: none;
+}
+
+#legend ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin: 10px 0;
+}
+
+#legend ul li .legend-txt {
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+
+
+h1,
+main {
+    width: 90%;
+    margin: 20px auto;
+}
+
+h1 {
+    height: 3em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    padding: 20px 0;
+
+    color: #fff;
+    background-color: #3d3d3d;
+
+    border-radius: 20px;
+}
+
+
+header {
+    width: 90%;
+    margin: 10px auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+header > div {
+    margin: 15px 20px;
+}
+
+
+#cal-params {
+    min-width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#cal-params > * {
+    margin: 15px 0;
+}
+
+#day-list {
+    margin-top: 10px;
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#day-list li {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    margin: 0 3px;
+
+    user-select: none;
+    cursor: pointer;
+
+    transition: all 0.1s ease-in-out;
+}
+
+#day-list li.active {
+    background-color: purple;
+    color: #fff;
+}
+
+
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label span {
+    margin-bottom: 5px;
+}
+
+
+
+
+main {
+    min-height: 100px;
+    background-color: #c0c0c0;
+
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+
+.month {
+    width: 100px;
+    height: 170px;
+
+    background-color: red;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    #cal-params,
+    #legend {
+        width: 80%;
+    }
+
+    label,
+    input {
+        width: 80%;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    #cal-params,
+    #legend {
+        width: 100%;
+    }
+
+    label,
+    input {
+        width: 100%;
+    }
 }
