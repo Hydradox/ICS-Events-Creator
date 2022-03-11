@@ -5,6 +5,7 @@ let main = $('main');
 // Init vars
 let selectedDates = [];
 let unselectableDates = [];
+let userDates = [];
 
 let ts = moment();
 const monthCount = 15;
@@ -12,6 +13,7 @@ const monthCount = 15;
 let daysBetweenEvents = $('#daysBetweenEvents');
 let evStart = $('#evStart');
 let evEnd = $('#evEnd');
+let userDaysAffect = $('#userDaysAffect');
 
 let calStart = ts.clone().startOf('month');
 let calEnd = ts.clone().add(monthCount - 1, 'M').endOf('month');
@@ -134,19 +136,28 @@ function markDates() {
     let daysCount = (daysBetweenEvents.val() || 1) - 1;
     for(let i = moment(evStart.val()).clone(); i < moment(evEnd.val()).clone(); i.add(1, 'd')) {
         // Valid date
-        if(validDaySelector(i) != 0) {
-            if(!unselectableDates.includes(i.format('YYYY-MM-DD'))) {
-                daysCount++;
+        if(userDaysAffect.prop('checked') && userDates.includes(i.format('YYYY-MM-DD'))) {
+            daysCount = 0;
 
-                // Reached limit date
-                if(daysCount == (daysBetweenEvents.val() || 1)) {
-                    daysCount = 0;
-                    $('.month tbody tr td div[data-date="' + i.format('YYYY-MM-DD') + '"][data-day="' + validDaySelector(i) + '"]:not(.out-of-range)').addClass('selected')
-                }
+        } else {
+            if(validDaySelector(i) != 0 && !unselectableDates.includes(i.format('YYYY-MM-DD'))) {
+            daysCount++;
+
+            // Reached limit date
+            if(daysCount == (daysBetweenEvents.val() || 1)) {
+                daysCount = 0;
+                $('.month tbody tr td div[data-date="'+ i.format('YYYY-MM-DD')
+                + '"][data-day="' + validDaySelector(i) + '"]:not(.out-of-range)').addClass('selected');
+            }
             }
         }
     }
 
+
+    // Set user marks
+    for(let i = 0; i < userDates.length; i++) {
+        $('.month tbody tr td div[data-date="' + userDates[i] + '"]').addClass('user-selected')
+    }
 
 
     // Set unselectable marks
@@ -181,34 +192,46 @@ daySelector.on('click', function(e) {
 let shifting = false;
 $(document).on('keyup keydown', function(e){shifting = e.shiftKey} );
 
-
 /* Unselectable day activator */
-$('.month tbody tr td div').on('click', function(e) {
-    
-    if(shifting) {
+$('.month tbody tr td div').on('tap', function(e) { calCellTouch(e, false) });
+
+/* Detect long press */
+$('.month tbody tr td div').on('press', function(e) { calCellTouch(e, true); })
+
+
+function calCellTouch(e, press = false) {
+    if(shifting || press) {
         $(e.target).removeClass('user-selected');
         $(e.target).removeClass('selected');
         
         let index = unselectableDates.indexOf($(e.target).data('date'));
-
         if(index == -1) {
             unselectableDates.push($(e.target).data('date'));
         } else {
             unselectableDates.splice(index, 1);
         }
 
-        markDates();
     } else {
         if(!$(e.target).hasClass('unselectable')) {
             $(e.target).toggleClass('user-selected');
+
+            let index = userDates.indexOf($(e.target).data('date'));
+            if(index == -1) {
+                userDates.push($(e.target).data('date'));
+            } else {
+                userDates.splice(index, 1);
+            }
         }
     }
-});
+
+    markDates();
+}
+
 
 
 /* Cal params listener */
-$('#daysBetweenEvents, #evStart, #evEnd').on('change input', function(e) {
-    markDates()
+$('#daysBetweenEvents, #evStart, #evEnd, #userDaysAffect').on('change input', function(e) {
+    markDates();
 });
 
 

@@ -180,7 +180,16 @@ label {
     align-items: flex-start;
 }
 
-label span {
+label.row-input {
+    flex-direction: row;
+    align-items: center;
+}
+
+label.row-input span {
+    margin-left: 10px;
+}
+
+label:not(.row-input) span {
     margin-bottom: 5px;
 }
 

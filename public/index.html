@@ -42,6 +42,11 @@
                 <span>Final del evento:</span>
                 <input type="date" name="evEnd" id="evEnd">
             </label>
+
+            <label class="row-input" for="userDaysAffect">
+                <input type="checkbox" name="userDaysAffect" id="userDaysAffect">
+                <span>Días sueltos afectan</span>
+            </label>
         </div>
 
 
@@ -58,11 +63,11 @@
                 </li>
                 <li>
                     <span class="color user-selected"></span>
-                    <span class="legend-txt">Día seleccionado a mano (Click)<l</span>
+                    <span class="legend-txt">Días sueltos seleccionados (Click)<l</span>
                 </li>
                 <li>
                     <span class="color unselectable"></span>
-                    <span class="legend-txt">Día no seleccionable (Shift + Click)</span>
+                    <span class="legend-txt">Día no seleccionable<br>(Shift + Click o Pulsación larga)</span>
                 </li>
                 <li>
                     <span class="color out-of-range"></span>
@@ -78,6 +83,7 @@
 
     <!-- Scripts -->
     <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/ngryman-jquery.finger-51d028a/dist/jquery.finger.min.js"></script>
     <script src="/js/moment-with-locales.min.js"></script>
     <script src="/js/main.js"></script>
 </body>
