@@ -113,9 +113,6 @@ markDates();
 function markDates() {
     // Reset marks
     $('.month tbody tr td div').removeClass();
-    selectedDates = [];
-    unselectableDates = [];
-
 
     // Set today mark
     $('.month tbody tr td div[data-date="' + moment().format('YYYY-MM-DD') + '"]').addClass('today');
@@ -138,14 +135,23 @@ function markDates() {
     for(let i = moment(evStart.val()).clone(); i < moment(evEnd.val()).clone(); i.add(1, 'd')) {
         // Valid date
         if(validDaySelector(i) != 0) {
-            daysCount++;
+            if(!unselectableDates.includes(i.format('YYYY-MM-DD'))) {
+                daysCount++;
 
-            // Reached limit date
-            if(daysCount == (daysBetweenEvents.val() || 1)) {
-                daysCount = 0;
-                $('.month tbody tr td div[data-date="' + i.format('YYYY-MM-DD') + '"][data-day="' + validDaySelector(i) + '"]:not(.out-of-range)').addClass('selected')
+                // Reached limit date
+                if(daysCount == (daysBetweenEvents.val() || 1)) {
+                    daysCount = 0;
+                    $('.month tbody tr td div[data-date="' + i.format('YYYY-MM-DD') + '"][data-day="' + validDaySelector(i) + '"]:not(.out-of-range)').addClass('selected')
+                }
             }
         }
+    }
+
+
+
+    // Set unselectable marks
+    for(let i = 0; i < unselectableDates.length; i++) {
+        $('.month tbody tr td div[data-date="' + unselectableDates[i] + '"]:not(.out-of-range)').addClass('unselectable')
     }
 }
 
@@ -180,16 +186,28 @@ $(document).on('keyup keydown', function(e){shifting = e.shiftKey} );
 $('.month tbody tr td div').on('click', function(e) {
     
     if(shifting) {
-        $(e.target).toggleClass('unselectable');
+        $(e.target).removeClass('user-selected');
+        $(e.target).removeClass('selected');
+        
+        let index = unselectableDates.indexOf($(e.target).data('date'));
+
+        if(index == -1) {
+            unselectableDates.push($(e.target).data('date'));
+        } else {
+            unselectableDates.splice(index, 1);
+        }
+
+        markDates();
     } else {
-        $(e.target).toggleClass('selected');
+        if(!$(e.target).hasClass('unselectable')) {
+            $(e.target).toggleClass('user-selected');
+        }
     }
 });
 
 
 /* Cal params listener */
 $('#daysBetweenEvents, #evStart, #evEnd').on('change input', function(e) {
-    console.log('Change')
     markDates()
 });
 
