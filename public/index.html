@@ -33,14 +33,14 @@
                 >
             </label>
 
-            <label for="startDate">
+            <label for="evStart">
                 <span>Principio del evento:</span>
-                <input type="date" name="startDate" id="startDate">
+                <input type="date" name="evStart" id="evStart">
             </label>
 
-            <label for="endDate">
+            <label for="evEnd">
                 <span>Final del evento:</span>
-                <input type="date" name="endDate" id="endDate">
+                <input type="date" name="evEnd" id="evEnd">
             </label>
         </div>
 
@@ -49,19 +49,23 @@
             <legend>Leyenda:</legend>
             <ul>
                 <li>
-                    <span class="color green"></span>
+                    <span class="color today"></span>
                     <span class="legend-txt">Día actual<l</span>
                 </li>
                 <li>
-                    <span class="color purple"></span>
+                    <span class="color selected"></span>
                     <span class="legend-txt">Día seleccionado<l</span>
                 </li>
                 <li>
-                    <span class="color black"></span>
+                    <span class="color user-selected"></span>
+                    <span class="legend-txt">Día seleccionado a mano<l</span>
+                </li>
+                <li>
+                    <span class="color unselectable"></span>
                     <span class="legend-txt">Día no seleccionable</span>
                 </li>
                 <li>
-                    <span class="color grey"></span>
+                    <span class="color out-of-range"></span>
                     <span class="legend-txt">Día fuera de rango</span>
                 </li>
             </ul>

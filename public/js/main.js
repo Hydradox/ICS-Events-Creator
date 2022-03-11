@@ -3,17 +3,26 @@ let daySelector = $('#day-list li');
 let main = $('main');
 
 // Init vars
+let selectedDates = [];
+let unselectableDates = [];
+
 let ts = moment();
-const monthCount = 12;
-const dayEq = 86400000;
+const monthCount = 15;
+
+let daysBetweenEvents = $('#daysBetweenEvents');
+let evStart = $('#evStart');
+let evEnd = $('#evEnd');
+
+let calStart = ts.clone().startOf('month');
+let calEnd = ts.clone().add(monthCount - 1, 'M').endOf('month');
 
 
 
 
 // Set default params
-$('#daysBetweenEvents').val(1);
-$('#startDate').val(moment().format('YYYY-MM-DD'));
-$('#endDate').val(moment().add(1, 'Y').format('YYYY-MM-DD'));
+daysBetweenEvents.val(3);
+evStart.val(moment().format('YYYY-MM-DD'));
+evEnd.val(moment().add(1, 'Y').format('YYYY-MM-DD'));
 
 
 
@@ -102,15 +111,41 @@ function getMonth(date) {
  */
 markDates();
 function markDates() {
-    let diasSeleccion = $('#day-list li.active');
-
-
     // Reset marks
-    $('.month tbody tr td div.selected').removeClass('selected');
+    $('.month tbody tr td div').removeClass();
+    selectedDates = [];
+    unselectableDates = [];
 
 
-    for(let i = 0; i < diasSeleccion.length; i++) {
-        $('.month tbody tr td div[data-day="' + $(diasSeleccion[i]).data('day') + '"]').addClass('selected')
+    // Set today mark
+    $('.month tbody tr td div[data-date="' + moment().format('YYYY-MM-DD') + '"]').addClass('today');
+
+    // Set outside range marks
+    // Before event
+    for(let i = calStart.clone(); i < moment(evStart.val()); i.add(1, 'd')) {
+        $('.month tbody tr td div[data-date="' + i.format('YYYY-MM-DD') + '"]').addClass('out-of-range');
+    }
+
+    // After event
+    for(let i = moment(evEnd.val()); i < calEnd; i.add(1, 'd')) {
+        $('.month tbody tr td div[data-date="' + i.format('YYYY-MM-DD') + '"]').addClass('out-of-range');
+    }
+
+
+
+    // Set day selector marks counting days between events
+    let daysCount = (daysBetweenEvents.val() || 1) - 1;
+    for(let i = moment(evStart.val()).clone(); i < moment(evEnd.val()).clone(); i.add(1, 'd')) {
+        // Valid date
+        if(validDaySelector(i) != 0) {
+            daysCount++;
+
+            // Reached limit date
+            if(daysCount == (daysBetweenEvents.val() || 1)) {
+                daysCount = 0;
+                $('.month tbody tr td div[data-date="' + i.format('YYYY-MM-DD') + '"][data-day="' + validDaySelector(i) + '"]:not(.out-of-range)').addClass('selected')
+            }
+        }
     }
 }
 
@@ -135,10 +170,13 @@ daySelector.on('click', function(e) {
     markDates();
 });
 
+
+/* Shifting listener */
 let shifting = false;
 $(document).on('keyup keydown', function(e){shifting = e.shiftKey} );
 
 
+/* Unselectable day activator */
 $('.month tbody tr td div').on('click', function(e) {
     
     if(shifting) {
@@ -146,7 +184,14 @@ $('.month tbody tr td div').on('click', function(e) {
     } else {
         $(e.target).toggleClass('selected');
     }
-})
+});
+
+
+/* Cal params listener */
+$('#daysBetweenEvents, #evStart, #evEnd').on('change input', function(e) {
+    console.log('Change')
+    markDates()
+});
 
 
 
@@ -160,6 +205,10 @@ $('.month tbody tr td div').on('click', function(e) {
 
 
 
+function validDaySelector(date) {
+    let day = getNumInWeek(date);
+    return ($('#day-list li[data-day="' + day + '"].active').length == 1 ? day : 0);
+}
 
 
 

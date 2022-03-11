@@ -49,19 +49,18 @@ input:focus {
 .color {
     width: 1em;
     height: 1em;
-
-    background-color: #000000;
     border-radius: 50%;
 
     display: inline-block;
     margin-right: 7px;
 }
 
-.green { background-color: green; }
-.purple { background-color: purple; }
-.blue { background-color: blue; }
-.black { background-color: black; }
-.grey { background-color: grey; }
+.today { border: 2px solid green; }
+.out-of-range { color: #fff; background-color: #b3b3b3; }
+
+.selected { color: #fff; background-color: purple; }
+.user-selected { color: #fff; background-color: blue; }
+.unselectable { color: #fff; background-color: black; }
 
 
 
@@ -231,21 +230,6 @@ main {
 
     transition: 0.1s ease-in-out;
 }
-
-.month td div.selected {
-    background-color: purple;
-    color: #fff;
-}
-
-.month td div.unselectable {
-    background-color: #000000;
-    color: #fff;
-}
-
-.month td div.today {
-    border: 3px solid green;
-}
-
 
 
 
