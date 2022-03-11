@@ -61,6 +61,7 @@ input:focus {
 .purple { background-color: purple; }
 .blue { background-color: blue; }
 .black { background-color: black; }
+.grey { background-color: grey; }
 
 
 
@@ -189,20 +190,24 @@ label span {
 
 main {
     min-height: 100px;
-    background-color: #c0c0c0;
 
 
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
-    gap: 10px;
+    gap: 20px;
 }
 
 
 .month {
-    height: calc(1.3em + 150px);
     text-align: center;
 
-    border: 1px solid blue;
+    padding: 10px 0;
+    background-color: #dbdbdb;
+    border-radius: 10px;
+}
+
+.month thead tr th {
+    padding-bottom: 10px;
 }
 
 .month caption {
@@ -222,6 +227,9 @@ main {
 
     margin: 0 auto;
     cursor: pointer;
+    user-select: none;
+
+    transition: 0.1s ease-in-out;
 }
 
 .month td div.selected {
@@ -229,7 +237,14 @@ main {
     color: #fff;
 }
 
+.month td div.unselectable {
+    background-color: #000000;
+    color: #fff;
+}
 
+.month td div.today {
+    border: 3px solid green;
+}
 
 
 
