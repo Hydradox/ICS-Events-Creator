@@ -22,10 +22,11 @@ const icsSubtitle = chalk.bold.bgBlue;
 
 
 class Calendar {
-    constructor(title = 'Evento sin nombre', desc = 'Evento sin descripción') {
+    constructor(title = 'Evento sin nombre', desc = 'Evento sin descripción', loc = '') {
         this.cal = ics;
         this.title = title;
         this.desc = desc;
+        this.loc = loc;
         this.path = join(process.cwd(), '/ics/', v4() + '.ics');
     }
 
@@ -43,7 +44,8 @@ class Calendar {
                 duration: { hours: 22 },
 
                 title: this.title,
-                description: this.desc
+                description: this.desc,
+                location: this.loc
             },
             (err, val) => {
                 appendFileSync(this.path, val, (writeErr) => {

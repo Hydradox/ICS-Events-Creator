@@ -264,6 +264,7 @@ submitBtn.on('click', function() {
     // Add data
     form.append('evName', $('#evName').val() || 'Evento sin nombre');
     form.append('evDesc', $('#evDesc').val() || 'Evento sin descripción');
+    form.append('evLoc', $('#evLoc').val() || '');
     form.append('dates', JSON.stringify(selectedDates));
 
 
