@@ -105,5 +105,6 @@ typings/
 # Package Lock
 package-lock.json
 
-# Build
-ICS-Events-Creator.exe
+# ICS Files
+ics/*
+!ics/DONOTDELETE

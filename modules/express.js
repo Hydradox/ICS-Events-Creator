@@ -42,7 +42,7 @@ class App {
         // Iniciar servidor escuchando a puerto predefinido
         server.listen(app.get('port'), () => {
             console.log(expressTitle(`Servidor Web iniciado`));
-            console.log(expressSubtitle(formatSize('Dir. Local:')) + `\t\thttp://localhost:${app.get('port')}/`);
+            console.log(expressSubtitle(formatSize('Dir. Local:')) + `\t\thttp://localhost:${app.get('port')}/\n`);
         });
     }
 }

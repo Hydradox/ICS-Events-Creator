@@ -14,6 +14,7 @@ let daysBetweenEvents = $('#daysBetweenEvents');
 let evStart = $('#evStart');
 let evEnd = $('#evEnd');
 let userDaysAffect = $('#userDaysAffect');
+let submitBtn = $('#submit');
 
 let calStart = ts.clone().startOf('month');
 let calEnd = ts.clone().add(monthCount - 1, 'M').endOf('month');
@@ -236,6 +237,52 @@ $('#daysBetweenEvents, #evStart, #evEnd, #userDaysAffect').on('change input', fu
 
 
 
+/* Submit data */
+submitBtn.on('click', function() {
+    let form = new FormData();
+
+    // Reset
+    selectedDates = [];
+
+
+    // Check validity
+    if($('#evName').val() == '') return;
+    if($('#evDesc').val() == '') return;
+
+
+    // Create data arr
+    let sel = $('.selected');
+
+    for(let i = 1; i < sel.length; i++) { selectedDates.push($(sel[i]).data('date')); }
+    for(let i = 1; i < userDates.length; i++) {
+        if(!selectedDates.includes($(userDates[i]).data('date'))) {
+            selectedDates.push($(userDates[i]).data('date'));
+        }
+    }
+
+
+    // Add data
+    form.append('evName', $('#evName').val() || 'Evento sin nombre');
+    form.append('evDesc', $('#evDesc').val() || 'Evento sin descripción');
+    form.append('dates', JSON.stringify(selectedDates));
+
+
+    // Send data
+    fetch('/api/data', {
+        method: 'POST',
+        body: form
+    })
+    .then(function(res) { return res.blob() })
+    .then(function(data) {
+        let a = $('a#dl');
+        a.css('display', 'block')
+
+        a.prop('href', window.URL.createObjectURL(data));
+        a.prop('download', simplifyName($('#evName').val()));
+
+        a.click();
+    })
+});
 
 
 
@@ -244,6 +291,10 @@ $('#daysBetweenEvents, #evStart, #evEnd, #userDaysAffect').on('change input', fu
 
 
 
+
+function simplifyName(name) {
+    return name.toLowerCase().replace(/[^a-z0-9]/g, '')
+}
 
 
 function validDaySelector(date) {

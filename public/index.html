@@ -50,34 +50,58 @@
         </div>
 
 
-        <fieldset id="legend">
-            <legend>Leyenda:</legend>
-            <ul>
-                <li>
-                    <span class="color today"></span>
-                    <span class="legend-txt">Día actual<l</span>
-                </li>
-                <li>
-                    <span class="color selected"></span>
-                    <span class="legend-txt">Día seleccionado<l</span>
-                </li>
-                <li>
-                    <span class="color user-selected"></span>
-                    <span class="legend-txt">Días sueltos seleccionados (Click)<l</span>
-                </li>
-                <li>
-                    <span class="color unselectable"></span>
-                    <span class="legend-txt">Día no seleccionable<br>(Shift + Click o Pulsación larga)</span>
-                </li>
-                <li>
-                    <span class="color out-of-range"></span>
-                    <span class="legend-txt">Día fuera de rango</span>
-                </li>
-            </ul>
-        </fieldset>
+        <div id="fielsets">
+            <fieldset id="legend">
+                <legend>Leyenda:</legend>
+                <ul>
+                    <li>
+                        <span class="color today"></span>
+                        <span class="legend-txt">Día actual<l</span>
+                    </li>
+                    <li>
+                        <span class="color selected"></span>
+                        <span class="legend-txt">Día seleccionado<l</span>
+                    </li>
+                    <li>
+                        <span class="color user-selected"></span>
+                        <span class="legend-txt">Días sueltos seleccionados (Click)<l</span>
+                    </li>
+                    <li>
+                        <span class="color unselectable"></span>
+                        <span class="legend-txt">Día no seleccionable<br>(Shift + Click o Pulsación larga)</span>
+                    </li>
+                    <li>
+                        <span class="color out-of-range"></span>
+                        <span class="legend-txt">Día fuera de rango</span>
+                    </li>
+                </ul>
+            </fieldset>
+    
+            <!-- Event info -->
+            <fieldset>
+                <legend>Datos del evento:</legend>
+    
+                <label for="evName">
+                    <span>Título:</span>
+                    <input type="text" name="evName" id="evName" placeholder="Título">
+                </label>
+    
+                <label for="evDesc">
+                    <span>Descripción:</span>
+                    <input type="text" name="evDesc" id="evDesc" placeholder="Descripción">
+                </label>
+    
+                <label>
+                    <button id="submit">Crear archivo ICS</button>
+                    <button><a id="dl" href="#" download="#">Descargar archivo ICS</a></button>
+                </label>
+            </fieldset>
+        </div>
     </header>
 
     <main></main>
+
+    <a href="#" download="#" id="dl"></a>
 
 
 

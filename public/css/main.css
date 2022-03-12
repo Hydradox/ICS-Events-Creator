@@ -40,10 +40,13 @@ input {
     transition: border 0.2s ease-in-out;
 }
 
-input:focus {
-    border-bottom: 3px solid #8d8d8d;
-}
+#dl { display: none; }
 
+
+#submit {
+    padding: 3px 5px;
+    font-weight: 700;
+}
 
 
 .color {
@@ -63,11 +66,24 @@ input:focus {
 .unselectable { color: #fff; background-color: black; }
 
 
+#fielsets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-#legend {
-    max-width: 500px;
-    min-width: 250px;
+fieldset {
     padding: 10px;
+    max-width: 500px;
+    min-width: 350px;
+}
+
+fieldset * {
+    margin: 5px 0;
+}
+
+fieldset input {
+    width: 100%;
 }
 
 #legend ul {
@@ -246,25 +262,21 @@ main {
 
 @media screen and (max-width: 600px) {
     #cal-params,
-    #legend {
+    fieldset,
+    input[type="text"] {
         width: 80%;
     }
 
-    label,
-    input {
-        width: 80%;
+    fieldset {
+        min-width: 0px;
     }
 }
 
 
 @media screen and (max-width: 500px) {
     #cal-params,
-    #legend {
-        width: 100%;
-    }
-
-    label,
-    input {
+    fieldset,
+    input[type="text"] {
         width: 100%;
     }
 }
