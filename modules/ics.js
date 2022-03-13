@@ -13,17 +13,11 @@ import { v4 } from 'uuid';
 import chalk from 'chalk';
 
 // Init const Chalk
-const icsTitle = chalk.bold.blue;
-const icsSubtitle = chalk.bold.bgBlue;
-
-
-// Init package variables
-
+const icsTitle = chalk.bold.bgPurple;
 
 
 class Calendar {
     constructor(title = 'Evento sin nombre', desc = 'Evento sin descripción', loc = '') {
-        this.cal = ics;
         this.title = title;
         this.desc = desc;
         this.loc = loc;
@@ -36,23 +30,31 @@ class Calendar {
 
 
     setDates(dates) {
+        let events = [];
+
+        console.log('Sumando fechas...');
+
         for(let i = 0; i < dates.length; i++) {
             let date = moment(dates[i]);
 
-            this.cal.createEvent({
-                start: [parseInt(date.format('Y')), parseInt(date.format('M')), parseInt(date.format('D')), 1, 0],
-                duration: { hours: 22 },
+            events.push({
+                start: [parseInt(date.format('Y')), parseInt(date.format('M')), parseInt(date.format('D')), 10, 0],
+                duration: { hours: 2 },
 
                 title: this.title,
                 description: this.desc,
                 location: this.loc
-            },
-            (err, val) => {
-                appendFileSync(this.path, val, (writeErr) => {
-                    console.log('ERR::', writeErr)
-                });
             });
         }
+
+        console.log('Archivo creado');
+
+
+        const { error, value } = ics.createEvents(events);
+
+        appendFileSync(this.path, value, (writeErr) => {
+            console.log('ERR::', writeErr)
+        });
     }
 }
 

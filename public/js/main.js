@@ -254,9 +254,9 @@ submitBtn.on('click', function() {
     let sel = $('.selected');
 
     for(let i = 1; i < sel.length; i++) { selectedDates.push($(sel[i]).data('date')); }
-    for(let i = 1; i < userDates.length; i++) {
-        if(!selectedDates.includes($(userDates[i]).data('date'))) {
-            selectedDates.push($(userDates[i]).data('date'));
+    for(let i = 0; i < userDates.length; i++) {
+        if(!selectedDates.includes(userDates[i])) {
+            selectedDates.push(userDates[i]);
         }
     }
 
