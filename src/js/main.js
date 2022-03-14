@@ -175,7 +175,7 @@ function markDates() {
  */
 /* Day selector listener */
 daySelector.on('click', function(e) {
-    $(e.target).toggleClass('active');
+    $(e.target).toggleClass('selected');
     markDates();
 });
 
@@ -240,12 +240,16 @@ submitBtn.on('click', function() {
         loc: '',
         dates: []
     };
+    
+    
+    $('#evName').removeClass('error');
+    $('#evDesc').removeClass('error');
 
 
     // Check validity
-    if($('#evName').val() == '') return;
-    if($('#evDesc').val() == '') return;
-
+    if($('#evName').val().trim() == '') return $('#evName').addClass('error');
+    if($('#evDesc').val().trim() == '') return $('#evDesc').addClass('error');
+    
 
     // Create dates array
     let sel = $('.selected');
@@ -259,9 +263,9 @@ submitBtn.on('click', function() {
 
 
     // Add event data
-    form.name = $('#evName').val() || 'Evento sin nombre';
-    form.desc = $('#evDesc').val() || 'Evento sin descripción';
-    form.loc = $('#evLoc').val() || '';
+    form.name = $('#evName').val().trim() || 'Evento sin nombre';
+    form.desc = $('#evDesc').val().trim() || 'Evento sin descripción';
+    form.loc = $('#evLoc').val().trim() || '';
 
 
     // Import Calendar Class
@@ -297,7 +301,7 @@ function simplifyName(name) {
 
 function validDaySelector(date) {
     let day = getNumInWeek(date);
-    return ($('#day-list li[data-day="' + day + '"].active').length == 1 ? day : 0);
+    return ($('#day-list li[data-day="' + day + '"].selected').length == 1 ? day : 0);
 }
 
 

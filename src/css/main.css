@@ -36,12 +36,29 @@ input {
     outline: none;
     border: 0;
     border-bottom: 2px solid #000000;
+    background-color: transparent;
+
+    -webkit-box-shadow: 0px 10px 18px -13px #000000; 
+    box-shadow: 0px 10px 18px -13px #000000;
 
     transition: border 0.2s ease-in-out;
 }
 
+
+input.error {
+    border-bottom: 3px solid #df0303;
+}
+
+
 #dl-btn { display: none; }
-#dl { display: none; }
+#dl {
+    display: none;
+    text-decoration: none;
+
+    font-weight: 700;
+    color: #000000;
+    padding: 3px 6px;
+}
 
 
 #submit {
@@ -67,7 +84,7 @@ input {
 .unselectable { color: #fff; background-color: black; }
 
 
-#fielsets {
+#fieldsets {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,7 +157,6 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 header > div {
@@ -229,6 +245,9 @@ main {
     padding: 10px 0;
     background-color: #dbdbdb;
     border-radius: 10px;
+
+    -webkit-box-shadow: 7px 7px 15px -7px #000000; 
+    box-shadow: 7px 7px 15px -7px #000000;
 }
 
 .month thead tr th {
@@ -260,11 +279,23 @@ main {
 
 
 
+@media screen and (max-width: 800px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
 
-@media screen and (max-width: 600px) {
     #cal-params,
+    #fieldsets,
     fieldset,
-    input[type="text"] {
+    label:not(.row-input) {
+        width: 80%;
+        align-items: center;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
         width: 80%;
     }
 
