@@ -3,7 +3,6 @@ let daySelector = $('#day-list li');
 let main = $('main');
 
 // Init vars
-let selectedDates = [];
 let unselectableDates = [];
 let userDates = [];
 
@@ -237,12 +236,18 @@ $('#daysBetweenEvents, #evStart, #evEnd, #userDaysAffect').on('change input', fu
 
 
 
+
+
+
+
 /* Submit data */
 submitBtn.on('click', function() {
-    let form = new FormData();
-
-    // Reset
-    selectedDates = [];
+    let form = {
+        name: '',
+        desc: '',
+        loc: '',
+        dates: []
+    };
 
 
     // Check validity
@@ -250,40 +255,38 @@ submitBtn.on('click', function() {
     if($('#evDesc').val() == '') return;
 
 
-    // Create data arr
+    // Create dates array
     let sel = $('.selected');
 
-    for(let i = 1; i < sel.length; i++) { selectedDates.push($(sel[i]).data('date')); }
+    for(let i = 1; i < sel.length; i++) { form.dates.push($(sel[i]).data('date')); }
     for(let i = 0; i < userDates.length; i++) {
-        if(!selectedDates.includes(userDates[i])) {
-            selectedDates.push(userDates[i]);
+        if(!form.dates.includes(userDates[i])) {
+            form.dates.push(userDates[i]);
         }
     }
 
 
-    // Add data
-    form.append('evName', $('#evName').val() || 'Evento sin nombre');
-    form.append('evDesc', $('#evDesc').val() || 'Evento sin descripción');
-    form.append('evLoc', $('#evLoc').val() || '');
-    form.append('dates', JSON.stringify(selectedDates));
+    // Add event data
+    form.name = $('#evName').val() || 'Evento sin nombre';
+    form.desc = $('#evDesc').val() || 'Evento sin descripción';
+    form.loc = $('#evLoc').val() || '';
 
 
-    // Send data
-    fetch('/api/data', {
-        method: 'POST',
-        body: form
-    })
-    .then(function(res) { return res.blob() })
-    .then(function(data) {
-        let a = $('a#dl');
-        a.css('display', 'block')
-
-        a.prop('href', window.URL.createObjectURL(data));
-        a.prop('download', simplifyName($('#evName').val()));
-
-        a.click();
-    })
+    // Import Calendar Class
+    submitData(form);
 });
+
+
+
+function createDownload(data) {
+    let a = $('a#dl');
+    a.css('display', 'block')
+
+    a.prop('href', URL.createObjectURL( new Blob([data], { type: 'text/calendar' }) ));
+    a.prop('download', simplifyName($('#evName').val()));
+}
+
+
 
 
 
