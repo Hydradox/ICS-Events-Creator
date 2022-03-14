@@ -30,14 +30,6 @@ evEnd.val(moment().add(1, 'Y').format('YYYY-MM-DD'));
 
 
 
-
-
-
-
-
-
-
-
 /**
  * GENERAR
  * CALENDARIO
@@ -280,7 +272,9 @@ submitBtn.on('click', function() {
 
 function createDownload(data) {
     let a = $('a#dl');
-    a.css('display', 'block')
+
+    $('#dl-btn').css('display', 'block');
+    a.css('display', 'block');
 
     a.prop('href', URL.createObjectURL( new Blob([data], { type: 'text/calendar' }) ));
     a.prop('download', simplifyName($('#evName').val()));

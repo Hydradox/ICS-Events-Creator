@@ -1,7 +1,7 @@
 {
   "name": "ics-events-creator",
   "productName": "ICS Events Creator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Aplicación para creación de eventos en el calendario",
   "main": "./index.js",
   "scripts": {
