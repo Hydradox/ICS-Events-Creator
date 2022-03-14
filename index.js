@@ -18,7 +18,7 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js')
     },
     autoHideMenuBar: true,
-    icon: path.join(__dirname, 'icon.png')
+    icon: path.join(__dirname, 'icon.ico')
   });
 
   // Options
@@ -26,9 +26,6 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'src/index.html'));
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

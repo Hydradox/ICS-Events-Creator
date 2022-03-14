@@ -1,8 +1,8 @@
 {
-  "name": "electron-test",
-  "productName": "electron-test",
-  "version": "1.0.0",
-  "description": "My Electron application description",
+  "name": "ics-events-creator",
+  "productName": "ICS Events Creator",
+  "version": "1.2.0",
+  "description": "Aplicación para creación de eventos en el calendario",
   "main": "./index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -19,27 +19,15 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./icon.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron_test"
+            "name": "ics_events_creator"
           }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
         }
       ]
     }
