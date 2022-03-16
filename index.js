@@ -59,7 +59,7 @@ app.on('activate', () => {
 const createCalendar = (e, data) => {
   console.log('IPC Recibido')
 
-  let ical = new Calendar(data.title, data.desc, data.loc);
+  let ical = new Calendar(data.name, data.desc, data.loc);
   ical.setDates(data.dates);
   
   return ical.getICS();

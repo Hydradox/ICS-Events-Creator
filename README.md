@@ -42,6 +42,7 @@ Una vez descargado, ejecuta el ejecutable y el programa se autoinstalará.
 ## 🕷 Bugs por solucionar
 
   - [x] Brecha de seguridad con Grunt en Jquery Finger
+  - [x] No crea los eventos correctamente
 
 
 Encuentra una lista completa de problemas reportados [aquí](https://github.com/Hydradox/ICS-Events-Creator/issues).

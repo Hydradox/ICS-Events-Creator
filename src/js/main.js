@@ -252,12 +252,13 @@ submitBtn.on('click', function() {
     
 
     // Create dates array
-    let sel = $('.selected');
+    let sel = $('div.selected');
 
-    for(let i = 1; i < sel.length; i++) { form.dates.push($(sel[i]).data('date')); }
+    for(let i = 0; i < sel.length; i++) { form.dates.push($(sel[i]).data('date')); }
     for(let i = 0; i < userDates.length; i++) {
         if(!form.dates.includes(userDates[i])) {
             form.dates.push(userDates[i]);
+            console.log(userDates[i])
         }
     }
 
