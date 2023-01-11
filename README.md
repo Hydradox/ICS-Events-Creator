@@ -1,8 +1,10 @@
-<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Hydradox/ICS-Events-Creator?style=for-the-badge">
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Hydradox/ICS-Events-Creator?style=for-the-badge)
 
-<img alt="GitHub all releases" src="https://img.shields.io/github/downloads/Hydradox/ICS-Events-Creator/total?style=for-the-badge">
+![GitHub all releases](https://img.shields.io/github/downloads/Hydradox/ICS-Events-Creator/total?style=for-the-badge)
 
 # ICS Event Creator <!-- omit in toc -->
+
+![Screen capture of program](./capture.png)
 
 ## Tabla de contenidos: <!-- omit in toc -->
 - [🌍 Sobre este proyecto](#-sobre-este-proyecto)
